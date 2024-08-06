@@ -31,3 +31,9 @@ test('throws an exception for a single negative number', () => {
 test('throws an exception for multiple negative numbers', () => {
   expect(() => add('1,-2,-3')).toThrow('Negative numbers not allowed: -2,-3');
 });
+
+test('ignores numbers greater than 1000', () => {
+  expect(add("25,1001")).toBe(25);
+  expect(add("1000,1001")).toBe(1000);
+  expect(add("1,2,3,4,1000,1001")).toBe(1010);
+});

@@ -1,24 +1,26 @@
-function add(numbers) {
-  if (numbers === "")
+function add(numString) {
+  if (numString === "")
     return 0;
 
   let delimiter = /[\n,]/;
 
-  if (numbers.startsWith('//')) {
-    const delimiterChar = numbers.match(/\/\/(.+?)\n/)[1];
+  if (numString.startsWith('//')) {
+    const delimiterChar = numString.match(/\/\/(.+?)\n/)[1];
     delimiter = new RegExp(delimiterChar);
-    numbers = numbers.split(/\n/)[1];
+    numString = numString.split(/\n/)[1];
   }
 
-  const arr = numbers
-  .split(delimiter)
-  .map(num => parseInt(num.trim()));
-  
-  const negativeNumbers = arr.filter(num => num < 0);
+  const numbers = numString
+    .split(delimiter)
+    .map(num => parseInt(num.trim()));
+
+  const negativeNumbers = numbers.filter(num => num < 0);
   if (negativeNumbers.length)
-    throw new Error(`Negative numbers not allowed: ${negativeNumbers.join(',')}`)
-  
-  const sum = arr.reduce((acc, num) => acc + num, 0);
+    throw new Error(`Negative numbers not allowed: ${negativeNumbers.join(',')}`);
+
+  const filteredNumbers = numbers.filter(num => num < 1001);
+
+  const sum = filteredNumbers.reduce((acc, num) => acc + num, 0);
   return sum;
 }
 
