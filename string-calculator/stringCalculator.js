@@ -5,7 +5,8 @@ function add(numbers) {
   let delimiter = /[\n,]/;
 
   if(numbers.startsWith('//')) {
-    delimiter = numbers.match(/\/\/(.+?)\n/)[1];
+    const delimiterChar = numbers.match(/\/\/(.+?)\n/)[1];
+    delimiter = new RegExp(delimiterChar);
     numbers = numbers.split(/\n/)[1];
   }
   
