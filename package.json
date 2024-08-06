@@ -4,7 +4,8 @@
   "description": "Incubyte TDD Assessment",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "test:watch": "jest --watch"
   },
   "author": "",
   "license": "ISC",
