@@ -1,7 +1,14 @@
 function add(numbers) {
   if (numbers === "")
     return 0;
-  const delimiter = /[\n,]/;
+  
+  let delimiter = /[\n,]/;
+
+  if(numbers.startsWith('//')) {
+    delimiter = numbers.match(/\/\/(.+?)\n/)[1];
+    numbers = numbers.split(/\n/)[1];
+  }
+  
   const arr = numbers
     .split(delimiter)
     .map(num => parseInt(num.trim()));
