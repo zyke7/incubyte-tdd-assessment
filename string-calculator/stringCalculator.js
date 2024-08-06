@@ -5,8 +5,8 @@ function add(numString) {
   let delimiter = /[\n,]/;
 
   if (numString.startsWith('//')) {
-    const delimiterChar = numString.match(/\/\/(.+?)\n/)[1];
-    delimiter = new RegExp(delimiterChar);
+    const delimiterStr = numString.match(/\/\/(.+?)\n/)[1];
+    delimiter = new RegExp(delimiterStr);
     numString = numString.split(/\n/)[1];
   }
 
@@ -15,12 +15,14 @@ function add(numString) {
     .map(num => parseInt(num.trim()));
 
   const negativeNumbers = numbers.filter(num => num < 0);
+
   if (negativeNumbers.length)
     throw new Error(`Negative numbers not allowed: ${negativeNumbers.join(',')}`);
 
   const filteredNumbers = numbers.filter(num => num < 1001);
 
   const sum = filteredNumbers.reduce((acc, num) => acc + num, 0);
+
   return sum;
 }
 

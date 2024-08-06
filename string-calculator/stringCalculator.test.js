@@ -33,7 +33,11 @@ test('throws an exception for multiple negative numbers', () => {
 });
 
 test('ignores numbers greater than 1000', () => {
-  expect(add("25,1001")).toBe(25);
-  expect(add("1000,1001")).toBe(1000);
-  expect(add("1,2,3,4,1000,1001")).toBe(1010);
+  expect(add('25,1001')).toBe(25);
+  expect(add('1000,1001')).toBe(1000);
+  expect(add('1,2,3,4,1000,1001')).toBe(1010);
 });
+
+test('returns the sum of numbers with a multi-character delimiter', () => {
+  expect(add('//[***]\n1***2***3')).toBe(6)
+})
