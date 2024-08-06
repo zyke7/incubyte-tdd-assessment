@@ -21,5 +21,13 @@ test('returns the sum of numbers with new lines', () => {
 })
 
 test('returns the sum of numbers with a dynamic delimiter', () => {
-  expect(add("//;\n1;2")).toBe(3);
+  expect(add('//;\n1;2')).toBe(3);
+});
+
+test('throws an exception for a single negative number', () => {
+  expect(() => add('1,-2')).toThrow('Negative numbers not allowed: -2');
+});
+
+test('throws an exception for multiple negative numbers', () => {
+  expect(() => add('1,-2,-3')).toThrow('Negative numbers not allowed: -2,-3');
 });
