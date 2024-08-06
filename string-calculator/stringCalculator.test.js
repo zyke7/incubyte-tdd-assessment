@@ -38,6 +38,16 @@ test('ignores numbers greater than 1000', () => {
   expect(add('1,2,3,4,1000,1001')).toBe(1010);
 });
 
-test('returns the sum of numbers with a multi-character delimiter', () => {
+test('returns the sum of numbers with a delimiter of length more than one char', () => {
   expect(add('//[***]\n1***2***3')).toBe(6)
-})
+});
+
+test('returns the sum of numbers with a multi-character delimiter', () => {
+  expect(add('//[*][%]\n1*2%3')).toBe(6)
+});
+
+test('returns the sum of numbers with a multi-character delimiters with length longer than one char', () => {
+  expect(add('//[***][%$]\n1***2%$3')).toBe(6)
+});
+
+

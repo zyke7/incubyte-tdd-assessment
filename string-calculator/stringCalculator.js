@@ -1,12 +1,26 @@
+function extractDelimiterPattern(str) {
+  const regexExtract = /\[(.*?)\]/g;
+  let match;
+  const patterns = [];
+
+  // Extract each pattern inside the square brackets
+  while ((match = regexExtract.exec(str)) !== null) {
+    patterns.push(match[1]);
+  }
+  // Escape special characters to avoid regex errors
+  return patterns.map(pattern => pattern.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
+}
+
 function add(numString) {
+
   if (numString === "")
     return 0;
 
   let delimiter = /[\n,]/;
 
   if (numString.startsWith('//')) {
-    const delimiterStr = numString.match(/\/\/(.+?)\n/)[1];
-    delimiter = new RegExp(delimiterStr);
+    const delimiterStr = extractDelimiterPattern(numString.match(/\/\/(.+?)\n/)[1]).join('|');
+    delimiter = new RegExp(delimiterStr, 'g');
     numString = numString.split(/\n/)[1];
   }
 
