@@ -1,2 +1,2 @@
-# incubyte-tdd-assessment
+# Incubyte-TDD-Assessment
 Incubyte TDD Assessment
